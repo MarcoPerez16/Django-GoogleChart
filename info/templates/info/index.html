@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grafica</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = google.visualization.arrayToDataTable({{values|safe}});
+
+        var options = {
+          title: 'Tiempos Jugados',
+          width: 900,
+          legend: { position: 'none' },
+          chart: { title: 'Grafica de Tiempos Jugados',
+                   subtitle: 'tiempo de usuarios jugando BoomPercussion' },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          axes: {
+            x: {
+              0: { side: 'top', label: 'Tiempo en segundos'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('tiempos'));
+        chart.draw(data, options);
+      };
+    </script>
+</head>
+<body>
+  <h3>top_tiempos</h3>
+  <div id="tiempos" style="width: 800px; height: 500px;"></div>
+</body>
+</html>
